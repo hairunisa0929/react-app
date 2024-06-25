@@ -1,31 +1,13 @@
-import { useState } from "react";
-import ToDoList from "./ToDoList";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Details from "./pages/Details";
 
 function App() {
-  // const [userData, setUserData] = useState({
-  //   name: "Felis Catus",
-  //   age: 9,
-  // });
-
-  // function changeAge() {
-  //   setUserData({
-  //     ...userData,
-  //     age: 12,
-  //   });
-  // }
-
   return (
-    <div className="p-4">
-      <ToDoList />
-      {/* <h1 className="font-bold">User Data</h1>
-      <p>
-        Name: {userData.name}
-      </p>
-      <p>Age: {userData.age}</p>
-      <button className="p-2 mt-2 bg-sky-400 rounded" onClick={changeAge}>
-        Change Age
-      </button> */}
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/detail/:id" element={<Details />} />
+    </Routes>
   );
 }
 
