@@ -1,15 +1,13 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UserContext } from "../context/UserContext";
-
+import { addUser } from "../store/actions/userAction";
 
 function HomeRHF() {
-  const { setUserData } = useContext(UserContext);
-  
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const schema = yup.object().shape({
     name: yup.string().required("Name is required"),
@@ -26,7 +24,7 @@ function HomeRHF() {
 
   const onSubmitForm = (data) => {
     console.log(data);
-    setUserData(data);
+    dispatch(addUser(data));
     navigate("/summary");
   };
 
