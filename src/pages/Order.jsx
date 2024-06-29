@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
 import CartItem from "../components/CartItem";
-import { addToCart } from "../store/actions/cartAction";
+import { addItem } from "../store/slice/cartSlice";
 
 function Order() {
   const dispatch = useDispatch();
@@ -19,11 +19,7 @@ function Order() {
   } = useSWR("http://localhost:3000/products", getData);
 
   const addItemToCart = (product) => {
-    const payload = {
-      ...product,
-      qty: 1,
-    };
-    dispatch(addToCart(payload));
+    dispatch(addItem(product));
   };
 
   console.log(dataCart);
