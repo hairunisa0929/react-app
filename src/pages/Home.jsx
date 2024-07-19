@@ -1,41 +1,28 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import useSWR from "swr";
 import Card from "../components/Card";
 
 function Home() {
-  // const [dataProducts, setDataProducts] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [dataProducts, setDataProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getData = (url) => axios.get(url).then((response) => response.data);
+  // get data with axios
+  async function getData() {
+    setIsLoading(true);
+    try {
+      const result = await axios.get("http://localhost:3000/products");
+      setDataProducts(result.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  const {
-    data: dataProducts,
-    isLoading,
-    error,
-    mutate,
-  } = useSWR("http://localhost:3000/products", getData);
+  useEffect(() => {
+    getData();
+  }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
-  // console.log(dataProducts);
-
-  // async function getData() {
-  //   setIsLoading(true);
-  //   try {
-  //     const result = await axios.get("http://localhost:3000/products");
-  //     setDataProducts(result.data);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
+  // get data with fetch
   // async function getData() {
   //   try {
   //     const response = await fetch("http://localhost:3000/products");
@@ -60,10 +47,13 @@ function Home() {
       .post("http://localhost:3000/products", payload)
       .then(() => {
         console.log("New Product successfully added!");
-        mutate();
+        getData();
       })
       .catch((error) => console.log(error));
   }
+
+  // if isLoading is true, loading will be shown
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="p-8 flex flex-col justify-center items-center">
