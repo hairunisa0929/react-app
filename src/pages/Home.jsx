@@ -18,6 +18,7 @@ function Home() {
     }
   }
 
+  // useEffect will run once in the first render
   useEffect(() => {
     getData();
   }, []);
