@@ -24,7 +24,10 @@ function App() {
       {/* setup router with jsx */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/details/:id" element={<Details />}>
+
+        {/* dynamic route */}
+        <Route path="/details/:id" element={<Details />}> 
+          {/* nested route */}
           <Route path="specification" element={<Specification />} />
           <Route path="review" element={<Review />} />
         </Route>

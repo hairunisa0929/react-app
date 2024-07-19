@@ -30,6 +30,7 @@ function Home() {
     <div>
       <h1 className="font-bold text-lg text-center">Home</h1>
       <div className="flex gap-4 my-4">
+        {/* mapping product ke dalam card */}
         {products.map((product) => (
           <div
             key={product.id}

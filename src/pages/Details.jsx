@@ -4,6 +4,8 @@ import { products } from "../data/product";
 function Details() {
   const { id } = useParams();
   const [searcParams] = useSearchParams();
+
+  // method find untuk mencari produk yang sesuai dengan id yang didapatkan dari params url
   const detailProduct = products.find((product) => product.id === parseInt(id));
 
   console.log(searcParams.get("name"));
