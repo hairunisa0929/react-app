@@ -30,5 +30,14 @@
       "img": "https://res.cloudinary.com/dwwpsubmg/image/upload/v1708361827/apgmg95hg4twuoxvrzms.png",
       "id": 6
     }
+  ],
+  "users": [
+    {
+      "email": "user1@mail.com",
+      "password": "$2a$10$12GwKFR4hvmmW/ir.0lbNuyYZjTuTz1iV0kWSvGhIHpTc8VxAT8TG",
+      "name": "User 1",
+      "role": "user",
+      "id": 1
+    }
   ]
 }

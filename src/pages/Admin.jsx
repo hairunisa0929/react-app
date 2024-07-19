@@ -2,8 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import useSWR from "swr";
 import * as yup from "yup";
+import { resetAuthData } from "../store/slice/authSlice";
 import Form from "../components/Form";
 
 function Admin() {
@@ -11,11 +14,16 @@ function Admin() {
   const [modalTitle, setModalTitle] = useState("");
   const [pokemonId, setPokemonId] = useState(null);
 
+  const user = useSelector((state) => state.auth.user);
+
   const schema = yup.object().shape({
     name: yup.string().required("Name is required"),
     price: yup.string().required("Price is required"),
     img: yup.string().required("Image is required"),
   });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -73,10 +81,15 @@ function Admin() {
     }
   };
 
+  const onClickLogout = () => {
+    dispatch(resetAuthData());
+    navigate("/login");
+  };
+
   const getPokemon = (url) => axios.get(url).then((response) => response.data);
 
   const { data, isLoading, error, mutate } = useSWR(
-    "http://localhost:3000/pokemon",
+    "http://localhost:3000/660/pokemon",
     getPokemon
   );
 
@@ -84,6 +97,15 @@ function Admin() {
 
   return (
     <div className="p-24">
+      <div className="flex justify-end items-center gap-4">
+        <p>Hi, {user.name}</p>
+        <button
+          onClick={onClickLogout}
+          className="p-2 rounded border border-gray-400 hover:text-white hover:bg-gray-700"
+        >
+          Logout
+        </button>
+      </div>
       <h1 className="text-center font-bold">List Products</h1>
       <button
         onClick={onClickAdd}
