@@ -4,6 +4,7 @@ import Details from "./pages/Details";
 import Specification from "./components/Specification";
 import Review from "./components/Review";
 
+// setup router with object
 // const router = createBrowserRouter([
 //   {
 //     path: "/",
@@ -19,6 +20,8 @@ function App() {
   return (
     <div className="flex justify-center items-center p-4">
       {/* <RouterProvider router={router} /> */}
+
+      {/* setup router with jsx */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<Details />}>
