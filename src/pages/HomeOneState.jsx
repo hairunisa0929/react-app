@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-function Home() {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-
+function HomeOneState() {
+  // create state to store data form
   const [dataForm, setDataForm] = useState({
     name: "",
     email: "",
@@ -12,6 +10,7 @@ function Home() {
     agree: false,
   });
 
+  // on change function
   const onChangeForm = (e) => {
     setDataForm({
       ...dataForm,
@@ -20,37 +19,10 @@ function Home() {
   };
 
   console.log("form data", dataForm);
-  // console.log("email", email);
 
   return (
     <div className="p-8 flex flex-col justify-center items-center">
       <h1 className="font-bold text-lg">Form</h1>
-
-      {/* <form className="flex flex-col gap-4 mt-4">
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            placeholder="Name"
-            className="w-full rounded-lg border-[1px] border-gray-300 p-4 pe-12 text-sm focus:outline-sky-200"
-            name="name"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            placeholder="Email"
-            className="w-full rounded-lg border-[1px] border-gray-300 p-4 pe-12 text-sm focus:outline-sky-200"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-      </form> */}
       <form
         className="flex flex-col gap-4 mt-4"
         // onSubmit={onSubmitForm}
@@ -149,4 +121,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeOneState;
