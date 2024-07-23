@@ -7,10 +7,14 @@ import * as yup from "yup";
 import Form from "../components/Form";
 
 function Admin() {
+  // state for show/hide modal
   const [showModal, setShowModal] = useState(false);
+  // state for storing modal title
   const [modalTitle, setModalTitle] = useState("");
+  // state for storing modal pokemon id
   const [pokemonId, setPokemonId] = useState(null);
 
+  // validation schema
   const schema = yup.object().shape({
     name: yup.string().required("Name is required"),
     price: yup.string().required("Price is required"),
@@ -92,6 +96,7 @@ function Admin() {
         Add New Pokemon
       </button>
 
+      {/* conditional rendering when showModal is true, modal form will be shown */}
       {showModal && (
         <Form
           title={modalTitle}
