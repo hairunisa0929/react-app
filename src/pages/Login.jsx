@@ -10,6 +10,7 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // schema validation
   const schema = yup.object().shape({
     email: yup.string().email().required("Email is required"),
     password: yup.string().min(5).max(32).required(),
@@ -31,6 +32,7 @@ function Login() {
         const { accessToken, user } = res.data;
         // console.log("token", accessToken);
         // console.log("user", user);
+        // saat berhasil login, data token dan user akan disimpan dalam redux
         dispatch(setToken(accessToken));
         dispatch(setUser(user));
         navigate("/admin");

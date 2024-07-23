@@ -11,6 +11,7 @@ const initialState = {
   },
 };
 
+// function to get token and user from localStorage and store them as initialState in redux
 function getStoredAuthState() {
   const token = localStorage.getItem("token");
   const userString = localStorage.getItem("user");
